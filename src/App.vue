@@ -46,7 +46,7 @@
               >Street</label
             >
             <input
-              type="street"
+              type="text"
               placeholder="Enter your street"
               class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
@@ -56,28 +56,28 @@
               >Suite</label
             >
             <input
-              type="suite"
+              type="text"
               placeholder="Enter your suite"
               class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
           <div>
             <label class="block text-lg font-medium text-gray-700 mb-2"
-              >Street</label
+              >City</label
             >
             <input
-              type="street"
-              placeholder="Enter your street"
+              type="text"
+              placeholder="Enter your city"
               class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
           <div>
             <label class="block text-lg font-medium text-gray-700 mb-2"
-              >Suite</label
+              >Zipcode</label
             >
             <input
-              type="suite"
-              placeholder="Enter your suite"
+              type="number"
+              placeholder="Enter your zipcode"
               class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
