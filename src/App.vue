@@ -1,6 +1,41 @@
 <template>
   <div class="flex justify-center mt-12">
-    <div class="w-full max-w-xl bg-white rounded-lg shadow-lg px-9">
+    <div class="w-auto bg-white rounded-lg shadow-lg p-9">
+      <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">
+        Table User
+      </h1>
+      <table class="w-full text-left border-collapse border-gray-300">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="border p-2" rowspan="2">Username</th>
+            <th class="border p-2" rowspan="2">Name</th>
+            <th class="border p-2" rowspan="2">Email</th>
+            <th class="border p-2 text-center" colspan="4">Address</th>
+          </tr>
+          <tr>
+            <th class="border p-2">Street</th>
+            <th class="border p-2">Suite</th>
+            <th class="border p-2">City</th>
+            <th class="border p-2">Zip Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="user in users" :key="user.id">
+            <td class="border p-2">{{ user.username }}</td>
+            <td class="border p-2">{{ user.name }}</td>
+            <td class="border p-2">{{ user.email }}</td>
+            <td class="border p-2">{{ user.address.street }}</td>
+            <td class="border p-2">{{ user.address.suite }}</td>
+            <td class="border p-2">{{ user.address.city }}</td>
+            <td class="border p-2">{{ user.address.zipcode }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="flex justify-center mt-12">
+    <div class="w-full max-w-xl bg-white rounded-lg shadow-lg px-9 mt-9">
       <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">
         Create User
       </h1>
@@ -123,6 +158,7 @@ export default {
           zipcode: "",
         },
       },
+      users: [],
     };
   },
   methods: {
@@ -131,6 +167,9 @@ export default {
         const response = await api.post("/users", this.form);
         alert("User berhasil dibuat!");
         console.log("Response dari API:", response.data);
+
+        const newUser = { ...this.form, id: Date.now() };
+        this.users.push(newUser);
 
         this.form = {
           username: "",
@@ -148,6 +187,34 @@ export default {
         alert("Gagal membuat user.");
       }
     },
+
+    async getUsers(){
+      try {
+        const response = await api.get("/users");
+        this.users = response.data;
+        console.log('Success get users: ',this.users);
+      } catch (cerror) {
+        console.error('Error get users: ',cerror);
+      }
+    }
+  },
+  form() {
+    return {
+      users: {
+        username: this.form.username,
+        name: this.form.name,
+        email: this.form.email,
+        address: {
+          street: this.form.address.street,
+          suite: this.form.address.suite,
+          city: this.form.address.city,
+          zipcode: this.form.address.zipcode,
+        },
+      },
+    };
+  },
+  mounted() {
+    this.getUsers();
   },
 };
 </script>
