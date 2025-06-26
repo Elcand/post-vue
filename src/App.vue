@@ -145,6 +145,7 @@
 import api from "./axios";
 
 export default {
+  // form saat belum submit
   data() {
     return {
       form: {
@@ -158,10 +159,11 @@ export default {
           zipcode: "",
         },
       },
-      users: [],
+      users: [], // kalo udah input, maka data disimpin disini.
     };
   },
   methods: {
+    // saat form submit
     async submitForm() {
       try {
         const response = await api.post("/users", this.form);
@@ -188,16 +190,19 @@ export default {
       }
     },
 
-    async getUsers(){
+    // get users dummy dari api
+    async getUsers() {
       try {
         const response = await api.get("/users");
         this.users = response.data;
-        console.log('Success get users: ',this.users);
+        console.log("Success get users: ", this.users);
       } catch (cerror) {
-        console.error('Error get users: ',cerror);
+        console.error("Error get users: ", cerror);
       }
-    }
+    },
   },
+
+  // kalo udah di submit, maka data disimpan akan ditampilkan pada tabel
   form() {
     return {
       users: {
@@ -212,9 +217,6 @@ export default {
         },
       },
     };
-  },
-  mounted() {
-    this.getUsers();
   },
 };
 </script>
