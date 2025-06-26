@@ -202,6 +202,10 @@ export default {
     },
   },
 
+  mounted() {
+    this.getUsers();
+  },
+
   // kalo udah di submit, maka data disimpan akan ditampilkan pada tabel
   form() {
     return {
