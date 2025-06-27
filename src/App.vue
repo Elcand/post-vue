@@ -30,7 +30,7 @@
             <td class="border p-2">{{ user.address.city }}</td>
             <td class="border p-2">{{ user.address.zipcode }}</td>
             <td class="border p-2">
-              <router-link :to="`/posts/index/${id}`" class="bg-blue-500 p-2 rounded-lg text-white text-sm font-bold m-2 hover:bg-blue-700">Show</router-link>
+              <router-link :to="`/posts/index/${user.id}`" class="bg-blue-500 p-2 rounded-lg text-white text-sm font-bold m-2 hover:bg-blue-700">Show</router-link>
               <router-link  class="bg-red-500 p-2 rounded-lg text-white text-sm font-bold hover:bg-red-700">Delete</router-link>
             </td>
           </tr>
