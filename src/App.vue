@@ -30,7 +30,8 @@
             <td class="border p-2">{{ user.address.city }}</td>
             <td class="border p-2">{{ user.address.zipcode }}</td>
             <td class="border p-2">
-              <a href="#" class="btn btn-primary">test</a>
+              <router-link :to="`/posts/index/${id}`" class="bg-blue-500 p-2 rounded-lg text-white text-sm font-bold m-2 hover:bg-blue-700">Show</router-link>
+              <router-link  class="bg-red-500 p-2 rounded-lg text-white text-sm font-bold hover:bg-red-700">Delete</router-link>
             </td>
           </tr>
         </tbody>
@@ -200,8 +201,8 @@ export default {
         const response = await api.get("/users");
         this.users = response.data;
         console.log("Success get users: ", this.users);
-      } catch (cerror) {
-        console.error("Error get users: ", cerror);
+      } catch (error) {
+        console.error("Error get users: ", error);
       }
     },
   },
