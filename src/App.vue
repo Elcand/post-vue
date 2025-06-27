@@ -1,16 +1,17 @@
 <template>
-  <div class="flex justify-center mt-12">
+  <div class="flex justify-center mt-12 mb-4">
     <div class="w-auto bg-white rounded-lg shadow-lg p-9">
       <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">
         Table User
       </h1>
       <table class="w-full text-left border-collapse border-gray-300">
-        <thead class="bg-gray-100">
+        <thead class="bg-gray-100 text-center">
           <tr>
             <th class="border p-2" rowspan="2">Username</th>
             <th class="border p-2" rowspan="2">Name</th>
             <th class="border p-2" rowspan="2">Email</th>
             <th class="border p-2 text-center" colspan="4">Address</th>
+            <th class="border p-2" rowspan="2">Action</th>
           </tr>
           <tr>
             <th class="border p-2">Street</th>
@@ -28,6 +29,9 @@
             <td class="border p-2">{{ user.address.suite }}</td>
             <td class="border p-2">{{ user.address.city }}</td>
             <td class="border p-2">{{ user.address.zipcode }}</td>
+            <td class="border p-2">
+              <a href="#" class="btn btn-primary">test</a>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -40,7 +44,7 @@
         Create User
       </h1>
       <hr />
-      <form class="space-y-3 mt-4" @submit.prevent="submitForm">
+      <form class="space-y-2 mt-4" @submit.prevent="submitForm">
         <div>
           <label class="block text-lg font-medium text-gray-700 mb-2"
             >Username</label
