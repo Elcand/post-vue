@@ -10,38 +10,38 @@
             <tr>
               <td>Username</td>
               <td>:</td>
-              <td>jksbdfs</td>
+              <td></td>
             </tr>
 
             <tr>
               <td>Name</td>
               <td>:</td>
-              <td>shdsdkjf</td>
+              <td></td>
             </tr>
             <tr>
               <td>email</td>
               <td>:</td>
-              <td>123@gamil.com</td>
+              <td></td>
             </tr>
             <tr>
               <td>alamat1</td>
               <td>:</td>
-              <td>kdskn</td>
+              <td></td>
             </tr>
             <tr>
               <td>alamat2</td>
               <td>:</td>
-              <td>shdsdkjf</td>
+              <td></td>
             </tr>
             <tr>
               <td>alamat3</td>
               <td>:</td>
-              <td>weir</td>
+              <td></td>
             </tr>
             <tr>
               <td>alamat4</td>
               <td>:</td>
-              <td>kdnk</td>
+              <td></td>
             </tr>
           </table>
         </div>
