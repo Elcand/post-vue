@@ -75,7 +75,17 @@
               <td class="border p-2 text-left">
                 {{ truncate(post.body, 50) }}
               </td>
-              <td class="border p-2 text-center">-</td>
+              <td class="border p-2 text-center">
+                <router-link
+                  :to="`/posts/show/${user.id}`"
+                  class="bg-blue-500 p-2 rounded-lg text-white text-sm font-bold m-2 hover:bg-blue-700"
+                  >Show</router-link
+                >
+                <router-link
+                  class="bg-red-500 p-2 rounded-lg text-white text-sm font-bold hover:bg-red-700"
+                  >Delete</router-link
+                >
+              </td>
             </tr>
           </tbody>
         </table>
