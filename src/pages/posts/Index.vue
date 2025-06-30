@@ -52,7 +52,6 @@
         </table>
       </div>
 
-      <!-- User Posts -->
       <div class="bg-white rounded-2xl shadow-lg p-9 w-full">
         <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">
           User Posts
@@ -73,18 +72,19 @@
                 {{ (currentPage - 1) * perPage + index + 1 }}
               </td>
               <td class="border p-2 text-left">{{ post.title }}</td>
-              <td class="border p-2 text-left">{{ post.body }}</td>
+              <td class="border p-2 text-left">
+                {{ truncate(post.body, 50) }}
+              </td>
               <td class="border p-2 text-center">-</td>
             </tr>
           </tbody>
         </table>
 
-        <!-- Pagination -->
-        <div class="flex justify-center mt-6 space-x-2">
+        <div class="flex justify-end mt-6 space-x-1">
           <button
             @click="currentPage--"
             :disabled="currentPage === 1"
-            class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 disabled:opacity-50"
+            class="px-3 py-1 bg-gray-200 rounded-sm hover:bg-gray-400 disabled:opacity-50"
           >
             &larr;
           </button>
@@ -94,10 +94,10 @@
             :key="page"
             @click="currentPage = page"
             :class="[
-              'px-4 py-2 rounded-lg',
+              'px-3 py-1 rounded-sm',
               currentPage === page
                 ? 'bg-blue-500 text-white'
-                : 'bg-gray-300 hover:bg-gray-400',
+                : 'bg-gray-200 hover:bg-gray-400',
             ]"
           >
             {{ page }}
@@ -106,7 +106,7 @@
           <button
             @click="currentPage++"
             :disabled="currentPage === totalPages"
-            class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 disabled:opacity-50"
+            class="px-3 py-1 bg-gray-200 rounded-sm hover:bg-gray-400 disabled:opacity-50"
           >
             &rarr;
           </button>
@@ -174,6 +174,10 @@ export default {
       } catch (error) {
         console.error("Error get user: ", error);
       }
+    },
+
+    truncate(text, length) {
+      return text.length > length ? text.substring(0, length) + "..." : text;
     },
   },
   mounted() {
