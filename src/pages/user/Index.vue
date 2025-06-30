@@ -218,7 +218,7 @@ export default {
       try {
         await api.delete(`/users/${userId}`);
         this.users = this.users.filter((user) => user.id !== userId);
-        console.log(`Post ${userId} berhasil dihapus`);
+        console.log(`User ${userId} berhasil dihapus`);
       } catch (error) {
         console.error("Error delete users:", error);
       }
