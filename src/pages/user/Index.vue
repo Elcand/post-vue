@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-center mt-12 mb-4">
+  <div class="flex justify-center mt-12 mb-4">
     <div class="w-auto bg-white rounded-lg shadow-lg p-9">
       <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">
         Table User
@@ -30,8 +30,17 @@
             <td class="border p-2">{{ user.address.city }}</td>
             <td class="border p-2">{{ user.address.zipcode }}</td>
             <td class="border p-2">
-              <router-link :to="`/posts/index/${user.id}`" class="bg-blue-500 p-2 rounded-lg text-white text-sm font-bold m-2 hover:bg-blue-700">Show</router-link>
-              <router-link  class="bg-red-500 p-2 rounded-lg text-white text-sm font-bold hover:bg-red-700">Delete</router-link>
+              <router-link
+                :to="`/posts/index/${user.id}`"
+                class="bg-blue-500 p-2 rounded-lg text-white text-sm font-bold m-2 hover:bg-blue-700"
+                >Show</router-link
+              >
+              <button
+                @click="confirmDelete(user.id)"
+                class="bg-red-500 p-2 rounded-lg text-white text-sm font-bold hover:bg-red-700"
+              >
+                Delete
+              </button>
             </td>
           </tr>
         </tbody>
@@ -146,8 +155,6 @@
   </div>
 </template>
 
-
-
 <script>
 import api from "../../axios";
 
@@ -205,6 +212,21 @@ export default {
         console.log("Success get users: ", this.users);
       } catch (error) {
         console.error("Error get users: ", error);
+      }
+    },
+    async deleteUser(userId) {
+      try {
+        await api.delete(`/users/${userId}`);
+        this.users = this.users.filter((user) => user.id !== userId);
+        console.log(`Post ${userId} berhasil dihapus`);
+      } catch (error) {
+        console.error("Error delete users:", error);
+      }
+    },
+
+    confirmDelete(userId) {
+      if (confirm("Yakin mau hapus users ini?")) {
+        this.deleteUser(userId);
       }
     },
   },
