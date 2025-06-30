@@ -81,10 +81,12 @@
                   class="bg-blue-500 p-2 rounded-lg text-white text-sm font-bold m-2 hover:bg-blue-700"
                   >Show</router-link
                 >
-                <router-link
+                <button
+                  @click="confirmDelete(post.id)"
                   class="bg-red-500 p-2 rounded-lg text-white text-sm font-bold hover:bg-red-700"
-                  >Delete</router-link
                 >
+                  Delete
+                </button>
               </td>
             </tr>
           </tbody>
@@ -188,6 +190,21 @@ export default {
 
     truncate(text, length) {
       return text.length > length ? text.substring(0, length) + "..." : text;
+    },
+    async deletePost(postId) {
+      try {
+        await axios.delete(`/posts/${postId}`);
+        this.posts = this.posts.filter((post) => post.id !== postId);
+        console.log(`Post ${postId} berhasil dihapus`);
+      } catch (error) {
+        console.error("Error delete post:", error);
+      }
+    },
+
+    confirmDelete(postId) {
+      if (confirm("Yakin mau hapus post ini?")) {
+        this.deletePost(postId);
+      }
     },
   },
   mounted() {
