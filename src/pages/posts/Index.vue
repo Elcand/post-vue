@@ -75,17 +75,28 @@
               <td class="border p-2 text-left">
                 {{ truncate(post.body, 50) }}
               </td>
-              <td class="border p-2 text-center">
+              <td
+                class="border p-2 flex flex-col lg:flex-row gap-2 justify-center items-center"
+              >
                 <router-link
-                  :to="`/posts/show/${user.id}`"
-                  class="bg-blue-500 p-2 rounded-lg text-white text-sm font-bold m-2 hover:bg-blue-700"
-                  >Show</router-link
+                  :to="`/posts/show/${post.id}`"
+                  class="flex items-center gap-1 bg-green-500 p-2 rounded-lg text-white text-sm font-bold hover:bg-green-700 transition"
                 >
+                  <Eye class="w-4 h-4" />
+                </router-link>
+
+                <router-link
+                  :to="`/posts/edit/${post.id}`"
+                  class="flex items-center gap-1 bg-yellow-500 p-2 rounded-lg text-white text-sm font-bold hover:bg-yellow-700 transition"
+                >
+                  <Pencil class="w-4 h-4" />
+                </router-link>
+
                 <button
                   @click="confirmDelete(post.id)"
-                  class="bg-red-500 p-2 rounded-lg text-white text-sm font-bold hover:bg-red-700"
+                  class="flex items-center gap-1 bg-red-500 p-2 rounded-lg text-white text-sm font-bold hover:bg-red-700 transition"
                 >
-                  Delete
+                  <Trash2 class="w-4 h-4" />
                 </button>
               </td>
             </tr>
@@ -130,8 +141,15 @@
 
 <script>
 import axios from "../../axios";
+import { Eye, Pencil, Trash2 } from "lucide-vue-next";
 
 export default {
+  components: {
+    Eye,
+    Pencil,
+    Trash2,
+  },
+
   data() {
     // nge return data untuk ditampilkan
     return {

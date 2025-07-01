@@ -36,7 +36,7 @@
                 :to="`/posts/index/${user.id}`"
                 class="flex items-center gap-1 bg-green-500 p-2 rounded-lg text-white text-sm font-bold hover:bg-green-700 transition"
               >
-                <Edit class="w-4 h-4" />
+                <Eye class="w-4 h-4" />
               </router-link>
 
               <router-link
@@ -168,11 +168,11 @@
 
 <script>
 import api from "../../axios";
-import { Edit, Pencil, Trash2 } from "lucide-vue-next";
+import { Eye, Pencil, Trash2 } from "lucide-vue-next";
 
 export default {
   components: {
-    Edit,
+    Eye,
     Pencil,
     Trash2,
   },

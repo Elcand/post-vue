@@ -3,6 +3,7 @@ import Home from "../pages/user/Index.vue";
 import EditUser from "../pages/user/Edit.vue";
 import PostIndex from "../pages/posts/Index.vue";
 import PostShow from "../pages/posts/Show.vue";
+import PostEdit from "../pages/posts/Edit.vue";
 
 const routes = [
   {
@@ -20,6 +21,10 @@ const routes = [
   {
     path: "/posts/show/:id",
     component: PostShow,
+  },
+  {
+    path: "/posts/edit/:id",
+    component: PostEdit,
   },
 ];
 
