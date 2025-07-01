@@ -29,17 +29,28 @@
             <td class="border p-2">{{ user.address.suite }}</td>
             <td class="border p-2">{{ user.address.city }}</td>
             <td class="border p-2">{{ user.address.zipcode }}</td>
-            <td class="border p-2">
+            <td
+              class="border p-2 flex flex-col lg:flex-row gap-2 justify-center items-center"
+            >
               <router-link
                 :to="`/posts/index/${user.id}`"
-                class="bg-blue-500 p-2 rounded-lg text-white text-sm font-bold m-2 hover:bg-blue-700"
-                >Show</router-link
+                class="flex items-center gap-1 bg-green-500 p-2 rounded-lg text-white text-sm font-bold hover:bg-green-700 transition"
               >
+                <Edit class="w-4 h-4" />
+              </router-link>
+
+              <router-link
+                :to="`/users/edit/${user.id}`"
+                class="flex items-center gap-1 bg-yellow-500 p-2 rounded-lg text-white text-sm font-bold hover:bg-yellow-700 transition"
+              >
+                <Pencil class="w-4 h-4" />
+              </router-link>
+
               <button
                 @click="confirmDelete(user.id)"
-                class="bg-red-500 p-2 rounded-lg text-white text-sm font-bold hover:bg-red-700"
+                class="flex items-center gap-1 bg-red-500 p-2 rounded-lg text-white text-sm font-bold hover:bg-red-700 transition"
               >
-                Delete
+                <Trash2 class="w-4 h-4" />
               </button>
             </td>
           </tr>
@@ -157,8 +168,14 @@
 
 <script>
 import api from "../../axios";
+import { Edit, Pencil, Trash2 } from "lucide-vue-next";
 
 export default {
+  components: {
+    Edit,
+    Pencil,
+    Trash2,
+  },
   // form saat belum submit
   data() {
     return {
