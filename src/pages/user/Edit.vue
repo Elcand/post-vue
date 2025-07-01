@@ -153,6 +153,7 @@ export default {
       try {
         const response = await api.put(`/users/${this.userId}`, this.form);
         alert("Success Update User!");
+        this.$router.push("/");
         console.log("Response dari API:", response.data);
       } catch (error) {
         console.error("Error updating user:", error);
