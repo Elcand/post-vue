@@ -28,7 +28,7 @@
 
         <h1 class="font-bold mt-8 mb-2 text-xl">Address</h1>
         <hr class="mb-4" />
-        <table class="w-full mt-2 text-lg">
+        <table class="w-full mt-2 text-lg mb-4">
           <tr>
             <td class="pr-4 font-semibold">Street</td>
             <td>:</td>
@@ -50,6 +50,15 @@
             <td class="pl-4">{{ user.address.zipcode }}</td>
           </tr>
         </table>
+        <hr />
+        <div class="flex justify-end">
+          <button
+            @click="goBack"
+            class="mt-4 px-4 py-2 bg-blue-500 justify-end text-white rounded-lg hover:bg-blue-600"
+          >
+            Back
+          </button>
+        </div>
       </div>
 
       <div class="bg-white rounded-2xl shadow-lg p-9 w-full">
@@ -229,6 +238,10 @@ export default {
       if (confirm("Yakin mau hapus post ini?")) {
         this.deletePost(postId);
       }
+    },
+
+    goBack() {
+      this.$router.back();
     },
   },
   mounted() {
