@@ -4,6 +4,7 @@ import EditUser from "../pages/user/Edit.vue";
 import PostIndex from "../pages/posts/Index.vue";
 import PostShow from "../pages/posts/Show.vue";
 import PostEdit from "../pages/posts/Edit.vue";
+import PostCreate from "../pages/posts/Create.vue";
 
 const routes = [
   {
@@ -17,6 +18,10 @@ const routes = [
   {
     path: "/posts/index/:id",
     component: PostIndex,
+  },
+  {
+    path: "/posts/create/:userId",
+    component: PostCreate,
   },
   {
     path: "/posts/show/:id",

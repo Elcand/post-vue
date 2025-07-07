@@ -53,9 +53,15 @@
       </div>
 
       <div class="bg-white rounded-2xl shadow-lg p-9 w-full">
-        <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">
-          User Posts
-        </h1>
+        <div class="flex justify-between items-center mb-6">
+          <h1 class="text-2xl font-bold text-gray-800">User Posts</h1>
+          <router-link
+            :to="`/posts/create/${user.id}`"
+            class="flex items-center gap-1 bg-blue-500 p-2 rounded-lg text-white text-sm font-bold hover:bg-blue-600 transition"
+          >
+            Add Post
+          </router-link>
+        </div>
         <hr class="mb-4" />
         <table class="w-full mt-4 text-center text-lg">
           <thead class="bg-gray-100 font-semibold">
