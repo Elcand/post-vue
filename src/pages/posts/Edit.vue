@@ -78,7 +78,7 @@ export default {
       try {
         const response = await axios.put(`/posts/${this.postId}`, this.form);
         alert("Success Update Post!");
-        this.$router.push(`/posts/index/${this.postId}`);
+        this.$router.back();
         console.log("Response dari API:", response.data);
       } catch (error) {
         console.error("Error updating post:", error);
