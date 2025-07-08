@@ -1,10 +1,13 @@
 import axios from "axios";
+import { env } from "./config/env.js";
 
 const api = axios.create({
-  baseURL: "http://localhost/post-backend/public/api",
+  baseURL: env.apiBaseURL,
   headers: {
     "Content-Type": "application/json",
   },
+  timeout: 10000,
 });
+
 
 export default api;
