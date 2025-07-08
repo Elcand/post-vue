@@ -60,13 +60,19 @@
           </tr>
         </table>
         <hr />
-        <div class="flex justify-end">
+        <div class="flex justify-end gap-4">
           <button
             @click="goBack"
-            class="mt-4 px-4 py-2 bg-blue-500 justify-end text-white rounded-lg hover:bg-blue-600"
+            class="mt-4 px-4 py-2 bg-gray-400 justify-end text-white rounded-lg hover:bg-gray-500"
           >
             Back
           </button>
+          <router-link
+            :to="`/users/edit/${user.id}`"
+            class="mt-4 px-4 py-2 bg-blue-500 justify-end text-white rounded-lg hover:bg-blue-600"
+          >
+            Update
+          </router-link>
         </div>
       </div>
 
