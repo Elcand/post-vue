@@ -10,6 +10,15 @@
         <hr class="mb-4" />
         <table class="w-full mt-4 text-lg">
           <tr>
+            <td colspan="3" class="text-center py-4">
+              <img
+                :src="getUserImage(user.img_profile)"
+                alt="Preview"
+                class="rounded-full aspect-square max-w-[120px] w-full object-cover ring-2 ring-white mx-auto"
+              />
+            </td>
+          </tr>
+          <tr>
             <td class="pr-4 font-semibold">Username</td>
             <td>:</td>
             <td class="pl-4">{{ user.username }}</td>
@@ -172,6 +181,7 @@ export default {
         username: "",
         name: "",
         email: "",
+        img_profile: null,
         address: {
           street: "",
           suite: "",
@@ -182,6 +192,7 @@ export default {
       posts: [],
       perPage: 4,
       currentPage: 1,
+      previewImage: null,
     };
   },
 
@@ -215,9 +226,9 @@ export default {
         const userId = this.$route.params.id; // ambil id dari route
         const response = await axios.get(`/users/${userId}/posts`);
         this.posts = response.data;
-        console.log("Success get user: ", this.posts);
+        console.log("Success get posts: ", this.posts);
       } catch (error) {
-        console.error("Error get user: ", error);
+        console.error("Error get posts: ", error);
       }
     },
 
@@ -242,6 +253,12 @@ export default {
 
     goBack() {
       this.$router.back();
+    },
+
+    getUserImage(imgPath) {
+      return imgPath
+        ? `http://127.0.0.1:8000/storage/${imgPath}`
+        : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png";
     },
   },
   mounted() {
