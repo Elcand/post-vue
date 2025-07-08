@@ -7,6 +7,25 @@
       <hr />
       <form class="space-y-2 mt-4" @submit.prevent="submitForm">
         <div>
+          <div v-if="previewImage" class="mb-2">
+            <img
+              :src="previewImage"
+              alt="Preview"
+              class="inline-block size-25 rounded-full ring-2 ring-white"
+            />
+          </div>
+
+          <label class="block text-lg font-medium text-gray-700 mb-2">
+            Profile Image
+          </label>
+          <input
+            type="file"
+            @change="handleFileChange"
+            class="w-full h-[40px] border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+
+        <div>
           <label class="block text-lg font-medium text-gray-700 mb-2"
             >Username</label
           >
@@ -116,6 +135,7 @@ export default {
         username: "",
         name: "",
         email: "",
+        img_profile: null,
         address: {
           street: "",
           suite: "",
@@ -123,13 +143,42 @@ export default {
           zipcode: "",
         },
       },
+      previewImage: null,
     };
   },
 
   methods: {
+    handleFileChange(e) {
+      const file = e.target.files[0];
+      if (file) {
+        this.form.img_profile = file;
+        this.previewImage = URL.createObjectURL(file);
+      }
+    },
+
     async submitForm() {
       try {
-        const response = await api.post("/users", this.form);
+        const formData = new FormData();
+
+        formData.append("username", this.form.username);
+        formData.append("name", this.form.name);
+        formData.append("email", this.form.email);
+
+        if (this.form.img_profile) {
+          formData.append("img_profile", this.form.img_profile);
+        }
+
+        formData.append("address[street]", this.form.address.street);
+        formData.append("address[suite]", this.form.address.suite);
+        formData.append("address[city]", this.form.address.city);
+        formData.append("address[zipcode]", this.form.address.zipcode);
+
+        const response = await api.post("/users", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
         alert("User berhasil dibuat!");
         this.$router.push("/");
         console.log("Response dari API:", response.data);
@@ -138,6 +187,7 @@ export default {
           username: "",
           name: "",
           email: "",
+          img_profile: null,
           address: {
             street: "",
             suite: "",
@@ -145,6 +195,7 @@ export default {
             zipcode: "",
           },
         };
+        this.previewImage = null;
       } catch (error) {
         console.error(error);
         alert("Gagal membuat user.");
