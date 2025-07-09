@@ -1,4 +1,10 @@
 <template>
+  <div class="text-end m-5">
+    <div class="m-4 p-2 space-x-5 pr-5">
+      <router-link :to="`/login`">Log in</router-link>
+      <router-link :to="`/login`">Register</router-link>
+    </div>
+  </div>
   <div class="flex justify-center mt-12 mb-4">
     <div class="w-auto bg-white rounded-lg shadow-lg p-9">
       <div class="flex justify-between items-center mb-6">

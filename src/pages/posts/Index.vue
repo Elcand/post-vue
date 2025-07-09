@@ -263,7 +263,7 @@ export default {
 
     getUserImage(imgPath) {
       return imgPath
-        ? `http://127.0.0.1:8000/storage/${imgPath}`
+        ? `http://localhost:8000/storage/${imgPath}`
         : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png";
     },
   },
