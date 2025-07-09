@@ -6,7 +6,7 @@ import PostShow from "../pages/posts/Show.vue";
 import PostEdit from "../pages/posts/Edit.vue";
 import PostCreate from "../pages/posts/Create.vue";
 import UserCreate from "../pages/user/Create.vue";
-import Login from "../pages/Login.vue";
+import Login from "../pages/auth/Login.vue";
 
 const routes = [
   {

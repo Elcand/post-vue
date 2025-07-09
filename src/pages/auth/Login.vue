@@ -40,7 +40,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { login } from "../services/authServices";
+import { login } from "../../services/authServices";
 
 const email = ref("");
 const password = ref("");
