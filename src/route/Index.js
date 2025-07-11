@@ -7,11 +7,16 @@ import PostEdit from "../pages/posts/Edit.vue";
 import PostCreate from "../pages/posts/Create.vue";
 import UserCreate from "../pages/user/Create.vue";
 import Login from "../pages/auth/Login.vue";
+import Register from "../pages/auth/Register.vue";
 
 const routes = [
   {
     path: "/login",
     component: Login,
+  },
+  {
+    path: "/register",
+    component: Register,
   },
   {
     path: "/", // as dashboard

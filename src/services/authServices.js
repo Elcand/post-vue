@@ -3,7 +3,7 @@ import api from "../axios";
 export const login = async (email, password) => {
   try {
     // Ambil CSRF token dari Laravel
-    await api.get("http://localhost:8000/api/sanctum/csrf-cookie");
+    await api.get("sanctum/csrf-cookie");
 
     // Kirim request login
     const response = await api.post("/login", {
