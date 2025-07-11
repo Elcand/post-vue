@@ -1,8 +1,18 @@
 <template>
   <div class="text-end m-5">
-    <div class="m-4 p-2 space-x-5 pr-5">
-      <router-link :to="`/login`">Log in</router-link>
-      <router-link :to="`/register`">Register</router-link>
+    <div v-if="!isLoggedIn">
+      <div class="m-4 p-2 space-x-5 pr-5">
+        <router-link :to="`/login`">Log in</router-link>
+        <router-link :to="`/register`">Register</router-link>
+      </div>
+    </div>
+    <div v-else>
+      <button
+        @click="logout"
+        class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition"
+      >
+        Log out
+      </button>
     </div>
   </div>
   <div class="flex justify-center mt-12 mb-4">
@@ -97,6 +107,7 @@ export default {
         },
       },
       users: [], // kalo udah input, maka data disimpin disini.
+      isLoggedIn: true,
     };
   },
   methods: {
@@ -125,27 +136,22 @@ export default {
         this.deleteUser(userId);
       }
     },
+    async logout() {
+      try {
+        await api.post("/logout");
+      } catch (error) {
+        console.error("Logout error:", error);
+      }
+
+      localStorage.removeItem("token");
+      this.isLoggedIn = false;
+      this.$router.push("/login");
+    },
   },
 
   mounted() {
     this.getUsers();
-  },
-
-  // kalo udah di submit, maka data disimpan akan ditampilkan pada tabel
-  form() {
-    return {
-      users: {
-        username: this.form.username,
-        name: this.form.name,
-        email: this.form.email,
-        address: {
-          street: this.form.address.street,
-          suite: this.form.address.suite,
-          city: this.form.address.city,
-          zipcode: this.form.address.zipcode,
-        },
-      },
-    };
+    this.isLoggedIn = !!localStorage.getItem("token");
   },
 };
 </script>

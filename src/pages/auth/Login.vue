@@ -40,14 +40,17 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { login } from "../../services/authServices";
 
 const email = ref("");
 const password = ref("");
+const router = useRouter();
 
 const handleLogin = async () => {
   try {
     const user = await login(email.value, password.value);
+    router.push("/");
     console.log("User berhasil login:", user);
   } catch (err) {
     alert("Login gagal. Cek email & password.");
