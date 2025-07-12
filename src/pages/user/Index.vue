@@ -7,12 +7,12 @@
       </div>
     </div>
     <div v-else>
-      <button
-        @click="logout"
-        class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition"
-      >
-        Log out
-      </button>
+      <div class="flex justify-end items-center gap-2">
+        <span class="text-gray-700 font-semibold m-4 p-2">
+          👋 Halo, {{ loggedInUser.username }}
+        </span>
+        <button @click="logout">Log out</button>
+      </div>
     </div>
   </div>
   <div class="flex justify-center mt-12 mb-4">
@@ -85,6 +85,7 @@
 <script>
 import api from "../../axios";
 import { Eye, Pencil, Trash2 } from "lucide-vue-next";
+import { authState } from "../../auth";
 
 export default {
   components: {
@@ -107,9 +108,12 @@ export default {
         },
       },
       users: [], // kalo udah input, maka data disimpin disini.
-      isLoggedIn: true,
+      // isLoggedIn: true,
+      loggedInUser: {},
+      authState,
     };
   },
+
   methods: {
     // get users dummy dari api
     async getUsers() {
@@ -143,15 +147,31 @@ export default {
         console.error("Logout error:", error);
       }
 
+      authState.user = null;
+      authState.token = null;
+      authState.isLoggedIn = false;
       localStorage.removeItem("token");
-      this.isLoggedIn = false;
       this.$router.push("/login");
     },
   },
 
-  mounted() {
+  computed: {
+    isLoggedIn() {
+      return !!localStorage.getItem("token");
+    },
+  },
+
+  async mounted() {
     this.getUsers();
-    this.isLoggedIn = !!localStorage.getItem("token");
+
+    if (localStorage.getItem("token")) {
+      try {
+        const res = await api.get("/users");
+        this.loggedInUser = res.data;
+      } catch (e) {
+        console.error("Gagal ambil user:", e);
+      }
+    }
   },
 };
 </script>

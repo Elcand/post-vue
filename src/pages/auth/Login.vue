@@ -39,19 +39,30 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import { useRouter } from "vue-router";
-import { login } from "../../services/authServices";
+import api from "../../axios";
 
 const email = ref("");
 const password = ref("");
+const auth = inject("auth");
 const router = useRouter();
 
 const handleLogin = async () => {
   try {
-    const user = await login(email.value, password.value);
+    await api.get("/sanctum/csrf-cookie");
+    await api.post("/login", {
+      email: email.value,
+      password: password.value,
+    });
+
+    const res = await api.get("/users");
+    auth.user = res.data;
+    auth.token = true;
+    auth.isLoggedIn = true;
+    localStorage.setItem("token", true);
+
     router.push("/");
-    console.log("User berhasil login:", user);
   } catch (err) {
     alert("Login gagal. Cek email & password.");
   }

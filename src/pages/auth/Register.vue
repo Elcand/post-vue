@@ -171,6 +171,17 @@ const handleFileChange = (e) => {
   }
 };
 
+const handleLogin = async () => {
+  try {
+    const user = await login(email.value, password.value);
+    localStorage.setItem("token", "true");
+    router.push("/");
+    console.log("User berhasil login:", user);
+  } catch (err) {
+    alert("Login gagal. Cek email & password.");
+  }
+};
+
 const validateForm = () => {
   errors.value = [];
 
