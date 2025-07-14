@@ -12,6 +12,7 @@ export default defineConfig({
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
+      // "/sanctum": "http://localhost:8000",s
     },
   },
 });

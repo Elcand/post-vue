@@ -12,6 +12,7 @@
                 type="email"
                 placeholder="Email"
                 class="w-full h-[40px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                required
               />
             </div>
             <div class="mx-6">
@@ -20,6 +21,7 @@
                 type="password"
                 placeholder="Password"
                 class="w-full h-[40px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                required
               />
             </div>
           </div>
@@ -51,12 +53,14 @@ const router = useRouter();
 const handleLogin = async () => {
   try {
     await api.get("/sanctum/csrf-cookie");
+
     await api.post("/login", {
       email: email.value,
       password: password.value,
     });
 
     const res = await api.get("/users");
+
     auth.user = res.data;
     auth.token = true;
     auth.isLoggedIn = true;
@@ -64,6 +68,7 @@ const handleLogin = async () => {
 
     router.push("/");
   } catch (err) {
+    console.error("Login gagal:", err);
     alert("Login gagal. Cek email & password.");
   }
 };

@@ -155,23 +155,26 @@ export default {
     },
   },
 
-  computed: {
-    isLoggedIn() {
-      return !!localStorage.getItem("token");
-    },
-  },
-
   async mounted() {
     this.getUsers();
 
     if (localStorage.getItem("token")) {
       try {
-        const res = await api.get("/users");
+        const res = await api.get("/user");
         this.loggedInUser = res.data;
+        authState.user = res.data;
+        authState.isLoggedIn = true;
+        console.log("User yang login:", res.data);
       } catch (e) {
         console.error("Gagal ambil user:", e);
       }
     }
+  },
+
+  computed: {
+    isLoggedIn() {
+      return this.authState.isLoggedIn && this.authState.user;
+    },
   },
 };
 </script>
