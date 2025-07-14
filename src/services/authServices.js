@@ -13,10 +13,10 @@ export const login = async (email, password) => {
     console.log("Login berhasil!", response.data);
 
     const user = await api.get("/users");
-    authState.user = response.data;
-    authState.token = "1";
+
+    authState.user = user.data;
     authState.isLoggedIn = true;
-    localStorage.setItem("token", "1");
+
     console.log("User yang login:", user.data);
     return user.data;
   } catch (error) {

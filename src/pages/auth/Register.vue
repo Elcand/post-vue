@@ -171,17 +171,6 @@ const handleFileChange = (e) => {
   }
 };
 
-const handleLogin = async () => {
-  try {
-    const user = await login(email.value, password.value);
-    localStorage.setItem("token", "true");
-    router.push("/");
-    console.log("User berhasil login:", user);
-  } catch (err) {
-    alert("Login gagal. Cek email & password.");
-  }
-};
-
 const validateForm = () => {
   errors.value = [];
 
@@ -219,6 +208,8 @@ const submitForm = async () => {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
+    await login(form.email, form.password);
+
     alert("User berhasil dibuat!");
     router.push("/");
     console.log("Response dari API:", response.data);
@@ -243,6 +234,7 @@ const submitForm = async () => {
     if (error.response?.data?.errors) {
       // Kalau backend kirim pesan error validasi Laravel
       errors.value = Object.values(error.response.data.errors).flat();
+      console.log("Register gagal:", error.response.data.errors);
     } else {
       errors.value = ["Terjadi kesalahan server. Silakan coba lagi."];
     }
