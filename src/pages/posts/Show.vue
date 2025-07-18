@@ -5,17 +5,19 @@
     </h1>
     <hr class="mb-4" />
     <table class="w-full mt-4 mb-6 text-lg">
-      <tr>
-        <td class="pr-4 font-semibold w-32">Title</td>
-        <td>:</td>
-        <td class="pl-4">{{ post.title }}</td>
-      </tr>
-      <br />
-      <tr>
-        <td class="pr-4 font-semibold w-32">Content</td>
-        <td>:</td>
-        <td class="pl-4">{{ post.body }}</td>
-      </tr>
+      <tbody>
+        <tr>
+          <td class="pr-4 font-semibold w-32">Title</td>
+          <td>:</td>
+          <td class="pl-4">{{ post.title }}</td>
+        </tr>
+
+        <tr>
+          <td class="pr-4 font-semibold w-32">Content</td>
+          <td>:</td>
+          <td class="pl-4">{{ post.body }}</td>
+        </tr>
+      </tbody>
     </table>
     <hr />
     <div class="flex justify-end">
